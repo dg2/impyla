@@ -20,7 +20,7 @@ try:
     import pandas as pd    
     def as_pandas(cursor):
         names = [metadata[0] for metadata in cursor.description]
-        return pd.DataFrame([dict(zip(names, row)) for row in cursor], columns=names)
+        return pd.DataFrame(cursor.fetchall(), columns=names)
 except ImportError:
     print "Failed to import pandas"
 
